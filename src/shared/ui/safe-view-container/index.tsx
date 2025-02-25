@@ -4,11 +4,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { getBackgroundColor } from '~/shared/constants/colors';
 
-export const SafeViewContainer = ({ children }: PropsWithChildren) => {
+interface SafeViewContainerProps extends PropsWithChildren {
+  cn?: string;
+}
+
+export const SafeViewContainer = ({ children, cn }: SafeViewContainerProps) => {
   const colorScheme = useColorScheme();
 
   return (
-    <SafeAreaView className={`flex-1 px-5 ${getBackgroundColor(colorScheme)}`}>
+    <SafeAreaView className={`flex-1 px-5 ${getBackgroundColor(colorScheme)} ${cn}`}>
       {children}
     </SafeAreaView>
   );

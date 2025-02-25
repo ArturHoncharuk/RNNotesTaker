@@ -1,9 +1,22 @@
+import { useEffect } from 'react';
+
+import { RootStackScreenProps } from '~/shared/types/navigation';
 import { SafeViewContainer, Typography } from '~/shared/ui';
 
-export function SplashScreen() {
+const NAVIGATION_DELAY = 5000;
+
+export function SplashScreen({ navigation }: RootStackScreenProps<'Splash'>) {
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      navigation.navigate('Notes');
+    }, NAVIGATION_DELAY);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
-    <SafeViewContainer>
-      <Typography cn="font-bold">Text</Typography>
+    <SafeViewContainer cn="flex-1 items-center justify-center">
+      <Typography cn="text-4xl font-[GautronRegular]">NotesKeeper</Typography>
     </SafeViewContainer>
   );
 }

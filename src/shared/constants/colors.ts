@@ -1,17 +1,14 @@
 import { Appearance } from '../types';
 
 export const Colors = {
-  light: '#000',
-  dark: '#fff',
-
   background_light: '#fff',
   background_dark: '#3c3c43',
 };
 
 export function getBackgroundColor(appearance: Appearance) {
-  return `bg-[${Colors[appearance === 'dark' ? 'background_dark' : 'background_light']}]`;
+  return appearance === 'dark' ? 'bg-[#3c3c43]' : 'bg-[#fff]';
 }
 
 export function getTypographyColor(appearance: Appearance) {
-  return `text-${appearance === 'dark' ? 'white' : 'dark'}`;
+  return appearance === 'dark' ? 'text-white' : 'text-black';
 }
