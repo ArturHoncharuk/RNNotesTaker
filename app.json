@@ -3,6 +3,7 @@
     "name": "rn-notes-taker",
     "slug": "rn-notes-taker",
     "version": "1.0.0",
+    "newArchEnabled": true,
 
     "web": {
       "favicon": "./assets/favicon.png"
@@ -17,7 +18,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
 
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
 
     "splash": {
       "image": "./assets/splash.png",
