@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { RootStackScreenProps } from '~/shared/types/navigation';
 import { SafeViewContainer, Typography } from '~/shared/ui';
 
-const NAVIGATION_DELAY = 5000;
+const NAVIGATION_DELAY = __DEV__ ? 1000 : 5000;
 
 export function SplashScreen({ navigation }: RootStackScreenProps<'Splash'>) {
   useEffect(() => {

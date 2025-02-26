@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren } from 'react';
 import { Text, TextProps, useColorScheme } from 'react-native';
 
 import { getTypographyColor } from '~/shared/constants/colors';
@@ -9,10 +9,6 @@ interface TypographyProps extends PropsWithChildren<TextProps> {
 
 export const Typography = ({ children, cn, ...props }: TypographyProps) => {
   const colorScheme = useColorScheme();
-
-  useEffect(() => {
-    console.log('colorScheme', colorScheme);
-  }, [colorScheme]);
 
   return (
     <Text className={`${getTypographyColor(colorScheme)} ${cn}`} {...props}>

@@ -4,7 +4,7 @@ import {
 } from '@react-navigation/native-stack';
 
 import { NotesScreen, SplashScreen } from '~/screens';
-import { RootStackParamList } from '~/shared/types/navigation';
+import { RootStackParamList } from '~/shared/types';
 
 const SCREEN_OPTIONS: NativeStackNavigationOptions = {
   headerShown: false,
