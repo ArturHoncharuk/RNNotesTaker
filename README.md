@@ -23,7 +23,7 @@ npm install -g expo-cli
 
 ## Clone & Install Dependencies
 ```sh
-git clone https://github.com/your-repo/NoteKeeper.git
-cd NoteKeeper
-npm install
+git clone https://github.com/ArturHoncharuk/RNNotesTaker
+cd RNNotesTaker
+yarn install
 ```
