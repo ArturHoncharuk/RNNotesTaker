@@ -17,7 +17,7 @@ jobs:
         id: action-verify-labels
         uses: mauroalderete/action-verify-labels@v1
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           github-token: ${{ secrets.GITHUB_TOKEN }}
         with:
           none: question, wontfix, invalid
           some: bug, feature, BREAKING CHANGE
