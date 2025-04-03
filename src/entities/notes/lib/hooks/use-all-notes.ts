@@ -19,6 +19,7 @@ export function useAllNotes() {
   });
 
   const length = useMemo(() => data?.length ?? 0, [data]);
+  console.log(length, 'length');
 
   return { notes: data?.length ? data : [], loading: isLoading, length, refetch };
 }
