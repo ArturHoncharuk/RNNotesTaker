@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 
 import { useAllNotes } from '~/entities/notes/lib';
 import { BottomNavigationList, NotesList } from '~/entities/notes/ui';
@@ -9,6 +9,7 @@ export function NotesScreen() {
   const { notes, loading, length, refetch } = useAllNotes();
 
   const onCreateNote = useCallback(() => {
+    Alert.alert('new note');
     console.log('new note');
   }, []);
 
