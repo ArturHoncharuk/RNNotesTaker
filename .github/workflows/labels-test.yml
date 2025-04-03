@@ -1,18 +1,21 @@
-name: Label Pull Requests
+name: Labels Test
 
 on:
   pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
+    branches: [main]
+    types: [opened, reopened, labeled, unlabeled]
 
 jobs:
-  label:
+  verify-labels:
     runs-on: ubuntu-latest
+    name: Verify labels
+    if: github.event.pull_request.merged == false
     steps:
-      - name: Assign Labels
-        uses: mauroalderete/action-assign-labels@v1
+      - uses: actions/checkout@v3
+      - name: Verify labels
+        id: action-verify-labels
+        uses: mauroalderete/action-verify-labels@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          labels: 'bug, enhancement, feature, hotfix'
+          none: question, wontfix, invalid
+          some: bug, feature, BREAKING CHANGE
+          emit-error-if-verify-fail: false
