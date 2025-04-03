@@ -10,14 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     name: Verify labels
     if: github.event.pull_request.merged == false
+    permissions:
+      pull-requests: read 
     steps:
       - uses: actions/checkout@v3
 
       - name: Verify labels
         id: action-verify-labels
         uses: mauroalderete/action-verify-labels@v1
-        env:
-           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           none: question, wontfix, invalid
           some: bug, feature, BREAKING CHANGE
