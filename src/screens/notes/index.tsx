@@ -10,6 +10,7 @@ export function NotesScreen() {
 
   const onCreateNote = useCallback(() => {
     Alert.alert('new note');
+    console.log('new note');
   }, []);
 
   return (
