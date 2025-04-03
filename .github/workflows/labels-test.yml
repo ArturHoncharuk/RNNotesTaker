@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Verify labels
     if: github.event.pull_request.merged == false
+    env:
+      GH_SECRET: ${{ secrets.GH_SECRET }} # Define the environment variable here
+
     steps:
       - uses: actions/checkout@v3
       - name: Verify labels
