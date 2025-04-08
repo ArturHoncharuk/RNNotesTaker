@@ -3,7 +3,7 @@ name: Label PRs Based on Conventional Commits
 on:
   pull_request:
     branches:
-      - master
+      - main
     types:
       - opened
       - edited
