@@ -12,7 +12,7 @@ interface NotesListProps {
 export const NotesList = ({ notes, refresh, loading }: NotesListProps) => {
   const renderItem = ({ item }: ListRenderItemInfo<Note>) => (
     <View className="border-b border-gray-200">
-      <Typography>{item.title}</Typography>
+      <Typography maxFontSizeMultiplier={1}>{item.title}</Typography>
     </View>
   );
 
