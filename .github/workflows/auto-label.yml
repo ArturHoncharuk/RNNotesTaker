@@ -1,4 +1,4 @@
-name: Auto Label PRs
+name: Auto-label PRs by Commit Message
 
 on:
   pull_request:
@@ -12,4 +12,13 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: ahmadnassri/action-conventional-commit-labels@v2
+      - name: Auto-label using commit messages
+        uses: tj-actions/auto-assign-issue-label@v2
+        with:
+          include-commit-message: true
+          commit-message-regex-labels: |
+            ^feat:.*=feature
+            ^fix:.*=fix
+            ^chore:.*=chore
+            ^docs:.*=documentation
+            ^refactor:.*=refactor
