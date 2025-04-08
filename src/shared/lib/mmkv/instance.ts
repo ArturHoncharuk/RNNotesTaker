@@ -6,5 +6,3 @@ export const mmkv = new MMKV({
   encryptionKey: 'hunter2',
   mode: Mode.MULTI_PROCESS,
 });
-
-console.log('mmkv', mmkv);
