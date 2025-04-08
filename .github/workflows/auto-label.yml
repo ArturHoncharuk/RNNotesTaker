@@ -1,4 +1,4 @@
-name: Auto-label PRs by Commit Message
+name: Label PRs Based on Conventional Commits
 
 on:
   pull_request:
@@ -7,18 +7,42 @@ on:
 jobs:
   label:
     runs-on: ubuntu-latest
-
     permissions:
       pull-requests: write
-
     steps:
-      - name: Auto-label using commit messages
-        uses: tj-actions/auto-assign-issue-label@v2
-        with:
-          include-commit-message: true
-          commit-message-regex-labels: |
-            ^feat:.*=feature
-            ^fix:.*=fix
-            ^chore:.*=chore
-            ^docs:.*=documentation
-            ^refactor:.*=refactor
+      - name: Check Out Repository
+        uses: actions/checkout@v4
+
+      - name: Analyze Commits and Label PR
+        run: |
+          # Fetch PR commits
+          commits=$(gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/commits --jq '.[].commit.message')
+
+          # Initialize an empty array for labels
+          labels=()
+
+          # Determine labels based on commit messages
+          while IFS= read -r commit; do
+            if [[ $commit =~ ^feat: ]]; then
+              labels+=("feature")
+            elif [[ $commit =~ ^fix: ]]; then
+              labels+=("fix")
+            elif [[ $commit =~ ^chore: ]]; then
+              labels+=("chore")
+            fi
+          done <<< "$commits"
+
+          # Remove duplicate labels
+          unique_labels=($(echo "${labels[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+
+          # Convert labels array to JSON array
+          labels_json=$(printf '%s\n' "${unique_labels[@]}" | jq -R . | jq -s .)
+
+          # Apply labels if any were determined
+          if [ ${#unique_labels[@]} -ne 0 ]; then
+            gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
+              --method POST \
+              --input - <<< "{\"labels\": $labels_json}"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
