@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  issues: write
+  pull-requests: write
+
 jobs:
   label_pr:
     runs-on: ubuntu-latest
@@ -16,7 +20,7 @@ jobs:
           conventional-commits: |
             conventional-commits:
               - type: 'fix'
-                nouns: ['fix', 'fixed']
+                nouns: ['fix']
                 labels: ['bug']
               - type: 'feat'
                 nouns: ['feat', 'feature']
