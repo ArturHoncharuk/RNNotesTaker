@@ -21,7 +21,7 @@ export const BottomNavigationList = ({ onCreateNote, notes }: BottomNavigationLi
         <View className="w-8" />
 
         <View className="flex-1 items-center">
-          <Typography cn="text-md font-medium">{notes} Notes</Typography>
+          <Typography cn="text-md font-2xl">{notes} Notes</Typography>
         </View>
 
         <TouchableOpacity onPress={onCreateNote}>
