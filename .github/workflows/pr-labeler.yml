@@ -1,41 +1,38 @@
-name: Labels Test
+name: Label Pull Requests Based on Conventional Commits
 
 on:
   pull_request:
-    branches: [main]
-    types: [opened, reopened, labeled, unlabeled]
+    types: [opened, synchronize, reopened]
 
 jobs:
-  assign-labels:
+  label_pr:
     runs-on: ubuntu-latest
-    name: Assign labels in pull request
-    if: github.event.pull_request.merged == false
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: mauroalderete/action-assign-labels@v1
+      - name: Assign Labels from Conventional Commits
+        uses: mauroalderete/action-assign-labels@v1
         with:
-          pull-request-number: ${{ github.event.pull_request.number }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          apply-changes: true
           conventional-commits: |
             conventional-commits:
               - type: 'fix'
-                nouns: ['FIX', 'Fix', 'fix', 'FIXED', 'Fixed', 'fixed']
+                nouns: ['fix', 'fixed']
                 labels: ['bug']
-              - type: 'feature'
-                nouns: ['FEATURE', 'Feature', 'feature', 'FEAT', 'Feat', 'feat']
-                labels: ['feature']
-              - type: 'breaking_change'
-                nouns: ['BREAKING CHANGE', 'BREAKING', 'MAJOR']
-                labels: ['BREAKING CHANGE']
-              - type: 'documentation'
-                nouns: ['doc','docu','document','documentation']
+              - type: 'feat'
+                nouns: ['feat', 'feature']
+                labels: ['enhancement']
+              - type: 'chore'
+                nouns: ['chore']
+                labels: ['maintenance']
+              - type: 'docs'
+                nouns: ['docs']
                 labels: ['documentation']
-              - type: 'build'
-                nouns: ['build','rebuild']
-                labels: ['build']
-              - type: 'config'
-                nouns: ['config', 'conf', 'cofiguration', 'configure']
-                labels: ['config']
-          maintain-labels-not-matched: false
-          apply-changes: true
+              - type: 'refactor'
+                nouns: ['refactor']
+                labels: ['refactoring']
+              - type: 'test'
+                nouns: ['test']
+                labels: ['testing']
+              - type: 'BREAKING CHANGE'
+                nouns: ['BREAKING CHANGE']
+                labels: ['breaking change']
