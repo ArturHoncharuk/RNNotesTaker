@@ -17,26 +17,22 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           apply-changes: true
-          conventional-commits: |
-            conventional-commits:
-              - type: 'fix'
-                nouns: ['fix']
-                labels: ['bug']
-              - type: 'feat'
-                nouns: ['feat', 'feature']
-                labels: ['enhancement']
-              - type: 'chore'
-                nouns: ['chore']
-                labels: ['maintenance']
-              - type: 'docs'
-                nouns: ['docs']
-                labels: ['documentation']
-              - type: 'refactor'
-                nouns: ['refactor']
-                labels: ['refactoring']
-              - type: 'test'
-                nouns: ['test']
-                labels: ['testing']
-              - type: 'BREAKING CHANGE'
-                nouns: ['BREAKING CHANGE']
-                labels: ['breaking change']
+          conventional-commits:
+            - type: 'fix'
+              nouns: ['FIX', 'Fix', 'fix', 'FIXED', 'Fixed', 'fixed']
+              labels: ['bug']
+            - type: 'feature'
+              nouns: ['FEATURE', 'Feature', 'feature', 'FEAT', 'Feat', 'feat']
+              labels: ['feature']
+            - type: 'breaking_change'
+              nouns: ['BREAKING CHANGE', 'BREAKING', 'MAJOR']
+              labels: ['BREAKING CHANGE']
+            - type: 'documentation'
+              nouns: ['doc', 'docu', 'document', 'documentation']
+              labels: ['documentation']
+            - type: 'build'
+              nouns: ['build', 'rebuild']
+              labels: ['build']
+            - type: 'config'
+              nouns: ['config', 'conf', 'cofiguration', 'configure']
+              labels: ['config']
