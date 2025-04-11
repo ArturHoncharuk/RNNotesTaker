@@ -11,7 +11,7 @@ export const Typography = ({ children, cn, ...props }: TypographyProps) => {
   const colorScheme = useColorScheme();
 
   return (
-    <Text className={`${getTypographyColor(colorScheme)} ${cn}`} {...props}>
+    <Text className={`text-medium ${getTypographyColor(colorScheme)} ${cn}`} {...props}>
       {children}
     </Text>
   );
